@@ -142,7 +142,8 @@ if __name__ == "__main__":
     cleaned = transform(raw)
     load(cleaned)
 
-📁 PROJECT 3 — cooling_system_simulation/README.md
+
+PROJECT 3 — cooling_system_simulation/README.md
 Cooling System Controller Simulation
 
 A Python simulation of simple control logic used in HVAC and cooling systems. It reflects an engineering understanding of system states, thresholds, and decision rules relevant to industrial control systems.
