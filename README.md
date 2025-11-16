@@ -2,20 +2,16 @@ Python Engineering Projects
 
 This repository contains three Python projects demonstrating automation, ETL workflows, and control-system logic simulation. They were designed to reflect a structured engineering mindset and to support applications for roles involving control systems, automation, HVAC, and data-driven engineering workflows.
 
-Repository Contents
-
-        Automation Script
+Repository Contents:
+        Automation Script:
         Automated report generator that cleans data, performs calculations, and produces daily monitoring summaries.
-        
-        ETL Temperature Pipeline
+        ETL Temperature Pipeline:
         End-to-end ETL pipeline for temperature sensor logs, including anomaly detection. Reflects typical preprocessing required for cooling-system monitoring.
-        
-        Cooling System Controller Simulation
+        Cooling System Controller Simulation:
         A Python simulation modelling simple decision logic used in cooling and HVAC control systems.
+        
 
-
-PROJECT 1 — automation_script
-Automated Report Generator
+PROJECT 1 — automation_script, Automated Report Generator
 
 This project automates data cleaning and generates a daily operational summary. It demonstrates skills in workflow automation, structured programming, and data handling, relevant to environments requiring reliable monitoring logic.
 
@@ -84,8 +80,7 @@ if __name__ == "__main__":
 
 
 
-PROJECT 2 — etl_temperature_pipeline
-ETL Workflow for Temperature Logs
+PROJECT 2 — etl_temperature_pipeline, ETL Workflow for Temperature Logs
 
 This project demonstrates an ETL pipeline that extracts, cleans, transforms, and loads temperature sensor data. It includes noise removal and anomaly detection logic relevant to industrial HVAC and cooling systems.
 
@@ -140,8 +135,7 @@ if __name__ == "__main__":
 
 
 
-PROJECT 3 — cooling_system_simulation
-Cooling System Controller Simulation
+PROJECT 3 — cooling_system_simulation, Cooling System Controller Simulation
 
 A Python simulation of simple control logic used in HVAC and cooling systems. It reflects an engineering understanding of system states, thresholds, and decision rules relevant to industrial control systems.
 
@@ -166,7 +160,7 @@ class CoolingSystemController:
         self.max_temp = max_temp
         self.state = "IDLE"
 
-    def evaluate_temperature(self, temperature):
+def evaluate_temperature(self, temperature):
         if temperature > self.max_temp:
             self.state = "COOLING_ON"
         elif temperature < self.min_temp:
@@ -175,7 +169,7 @@ class CoolingSystemController:
             self.state = "STABLE"
         return self.state
 
-    def simulate(self, readings):
+def simulate(self, readings):
         results = []
         for temp in readings:
             status = self.evaluate_temperature(temp)
