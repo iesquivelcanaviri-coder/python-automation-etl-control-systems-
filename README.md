@@ -1,31 +1,15 @@
-Python Engineering Projects
-
-This repository contains three Python projects demonstrating automation, ETL workflows, and control-system logic simulation. They were designed to reflect a structured engineering mindset and to support applications for roles involving control systems, automation, HVAC, and data-driven engineering workflows.
-
-Repository Contents:
-        Automation Script:
-        Automated report generator that cleans data, performs calculations, and produces daily monitoring summaries.
-        ETL Temperature Pipeline:
-        End-to-end ETL pipeline for temperature sensor logs, including anomaly detection. Reflects typical preprocessing required for cooling-system monitoring.
-        Cooling System Controller Simulation:
-        A Python simulation modelling simple decision logic used in cooling and HVAC control systems.
-        
-
-PROJECT 1 — automation_script, Automated Report Generator
+Automated Report Generator
 
 This project automates data cleaning and generates a daily operational summary. It demonstrates skills in workflow automation, structured programming, and data handling, relevant to environments requiring reliable monitoring logic.
 
-Features
-
+**Features**
 • Loads a CSV dataset
 • Cleans numerical values
 • Computes metrics such as mean and min/max
 • Saves a formatted report as a text file
 
-Files
-
+**Files**
 automated_report_generator.py
-
 input_data.csv
 
 Example Usage
@@ -39,7 +23,9 @@ value
 30
 25
 
-automated_report_generator.py
+
+
+**automated_report_generator.py**
 import pandas as pd
 from datetime import datetime
 
@@ -77,4 +63,3 @@ if __name__ == "__main__":
         df = clean_data(df)
         summary = generate_report(df)
         save_report(summary)
-
