@@ -1,15 +1,43 @@
-**Python Engineering Projects**
+**PROJECT 3 — cooling_system_simulation**
 
-This repository contains three Python projects demonstrating automation, ETL workflows, and control-system logic simulation. They were designed to reflect a structured engineering mindset and to support applications for roles involving control systems, automation, HVAC, and data-driven engineering workflows.
+Cooling System Controller Simulation
+A Python simulation of simple control logic used in HVAC and cooling systems. It reflects an engineering understanding of system states, thresholds, and decision rules relevant to industrial control systems.
 
-Repository Contents:
-Automation Script: Automated report generator that cleans data, performs calculations, and produces daily monitoring summaries.
+Features
+• Monitors temperature readings
+• Switches states based on thresholds
+• Simulates controller response
 
-ETL Temperature Pipeline: End-to-end ETL pipeline for temperature sensor logs, including anomaly detection. Reflects typical preprocessing required for cooling-system monitoring.
+Files
+cooling_system_controller_sim.py
 
-Cooling System Controller Simulation: A Python simulation modelling simple decision logic used in cooling and HVAC control systems.
+Example Usage: python cooling_system_controller_sim.py
 
-Each project includes:
-• Python scripts
-• Sample datasets
-• Documentation
+cooling_system_controller_sim.py
+class CoolingSystemController:
+    def __init__(self, min_temp=16.0, max_temp=22.0):
+        self.min_temp = min_temp
+        self.max_temp = max_temp
+        self.state = "IDLE"
+
+  def evaluate_temperature(self, temperature):
+        if temperature > self.max_temp:
+            self.state = "COOLING_ON"
+        elif temperature < self.min_temp:
+            self.state = "COOLING_OFF"
+        else:
+            self.state = "STABLE"
+        return self.state
+
+  def simulate(self, readings):
+        results = []
+        for temp in readings:
+            status = self.evaluate_temperature(temp)
+            results.append((temp, status))
+        return results
+
+if __name__ == "__main__":
+    readings = [18.2, 23.5, 21.0, 15.1, 19.5]
+    controller = CoolingSystemController()
+    for temp, status in controller.simulate(readings):
+        print(f"Temperature {temp} -> System State: {status}")
