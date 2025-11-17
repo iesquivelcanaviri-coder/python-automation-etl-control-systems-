@@ -1,3 +1,5 @@
+PROJECT 1 — automation_script/README.md
+
 Automated Report Generator
 
 This project automates data cleaning and generates a daily operational summary. It demonstrates skills in workflow automation, structured programming, and data handling, relevant to environments requiring reliable monitoring logic.
