@@ -1,67 +1,49 @@
-PROJECT 1 — automation_script/README.md
+PROJECT 2 — etl_temperature_pipeline
 
-Automated Report Generator
+ETL Workflow for Temperature Logs
+This project demonstrates an ETL pipeline that extracts, cleans, transforms, and loads temperature sensor data. It includes noise removal and anomaly detection logic relevant to industrial HVAC and cooling systems.
 
-This project automates data cleaning and generates a daily operational summary. It demonstrates skills in workflow automation, structured programming, and data handling, relevant to environments requiring reliable monitoring logic.
+Features
+• Extracts raw CSV data
+• Converts values to numeric types
+• Removes out-of-range sensor noise
+• Flags anomalies for maintenance analysis
+• Outputs a cleaned dataset
 
-**Features**
-• Loads a CSV dataset
-• Cleans numerical values
-• Computes metrics such as mean and min/max
-• Saves a formatted report as a text file
-
-**Files**
-automated_report_generator.py
-input_data.csv
+Files
+etl_pipeline_temperature_logs.py
+raw_temperature_logs.csv
 
 Example Usage
-python automated_report_generator.py
-
-Example Dataset (input_data.csv)
-value
-10
-20
-15
-30
+python etl_pipeline_temperature_logs.py
+Example Dataset (raw_temperature_logs.csv)
+temperature
+22
 25
+-15
+75
+61
+18
+20
 
-
-
-**automated_report_generator.py**
+etl_pipeline_temperature_logs.py
 import pandas as pd
-from datetime import datetime
 
-def load_data(file_path):
-    try:
-        return pd.read_csv(file_path)
-    except FileNotFoundError:
-        print("Input file not found.")
-        return None
+def extract(file_path):
+    return pd.read_csv(file_path)
 
-def clean_data(df):
+def transform(df):
     df = df.copy()
-    df.dropna(subset=['value'], inplace=True)
-    df['value'] = df['value'].astype(float)
+    df['temperature'] = df['temperature'].astype(float)
+    df = df[(df['temperature'] > -40) & (df['temperature'] < 80)]
+    df['anomaly'] = df['temperature'].apply(lambda x: 1 if x > 60 or x < 0 else 0)
     return df
 
-def generate_report(df):
-    return {
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "total_records": len(df),
-        "mean_value": df['value'].mean(),
-        "max_value": df['value'].max(),
-        "min_value": df['value'].min()
-    }
-
-def save_report(report):
-    with open("daily_report.txt", "w") as f:
-        for k, v in report.items():
-            f.write(f"{k}: {v}\n")
-    print("Report generated: daily_report.txt")
+def load(df, output_file="processed_temperature_logs.csv"):
+    df.to_csv(output_file, index=False)
+    print("Processed file saved:", output_file)
 
 if __name__ == "__main__":
-    df = load_data("input_data.csv")
-    if df is not None:
-        df = clean_data(df)
-        summary = generate_report(df)
-        save_report(summary)
+    raw = extract("raw_temperature_logs.csv")
+    cleaned = transform(raw)
+    load(cleaned)
